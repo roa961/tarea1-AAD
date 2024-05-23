@@ -1,0 +1,13 @@
+.reviews{
+    position: fixed;
+    top: 100px;
+    width: 100%;
+    text-align: center;
+    overflow: auto;
+    height:100%;
+    
+}
+.container{
+    overflow: 'auto';
+    
+}
