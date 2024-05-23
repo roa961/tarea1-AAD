@@ -1,0 +1,49 @@
+version: "3.9"
+#***Se utiliza la versión de docker compose 2.27.0 ya que esta es compatible con el uso de healthcheck
+services:
+  client:
+    build:
+      context: ./client 
+    container_name: client
+    ports:
+      - "5173:80" # puerto 5173 react-vite / puerto 80 nginx
+    environment:
+      - VITE_API_URL=${VITE_API_URL}
+  postgres:
+    image: postgres
+    container_name: db
+    ports:
+      - 5432:5432
+    environment: # Variables de entorno definidas para el db
+      - POSTGRES_PASSWORD=${PASS}
+      - POSTGRES_USER=${USUR}
+      - POSTGRES_DB=${PASS}
+    networks: #Server y db se definen en la misma red
+      - tarea1
+    healthcheck: #Esta parte se define en el DB para que el server espere a que se inicie ante de enviar la petición de conexión.
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"] #pg_isready es utiliza para checkear el estado
+      interval: 20s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
+  server:
+    build:
+      context: ./server 
+    container_name: backend
+    ports:
+      - "8080:8080"
+    environment: # Variables de entorno para acceder al db
+      - HOST=${HOST} 
+      - USUR=${USUR}
+      - PASS=${PASS}
+      - DAB=${DAB}
+    depends_on:
+      postgres:
+          condition: service_healthy # Se utiliza el healthcheck definido en el servicio postgres
+    networks:
+      - tarea1 
+networks:
+  tarea1:
+    driver: bridge
+   
