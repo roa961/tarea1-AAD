@@ -8,7 +8,7 @@ Esta tarea se basa en la creación de una aplicación web capaz de recibir y mos
 
 ## Authors
 
-- [@roa961](https://www.github.com/roa961)
+- [@roa961](https://www.github.com/roa961) (Rómulo Otárola)
 
 
 ## Variables de entorno
