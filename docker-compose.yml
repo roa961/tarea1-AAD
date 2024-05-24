@@ -1,4 +1,3 @@
-version: "3.9"
 #***Se utiliza la versión de docker compose 2.27.0 ya que esta es compatible con el uso de healthcheck
 services:
   client:
@@ -21,7 +20,7 @@ services:
     networks: #Server y db se definen en la misma red
       - tarea1
     healthcheck: #Esta parte se define en el DB para que el server espere a que se inicie ante de enviar la petición de conexión.
-      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"] #pg_isready es utiliza para checkear el estado
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"] #pg_isready es utilizado para checkear el estado de la base de datos.
       interval: 20s
       timeout: 5s
       retries: 3
