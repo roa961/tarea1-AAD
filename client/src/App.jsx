@@ -8,6 +8,7 @@ import NewReview from "./components/NewReview";
 import './components/footer.css';
 import './components/rocas.css'
 import EditReview from "./components/EditReview";
+import Details from "./components/Details";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/rocas" element={<Rocas/>} />
           <Route path="/newreview" element={<NewReview/>} />
           <Route path="/rocas/editreview/:id" element={<EditReview/>} />
+          <Route path="/rocas/details/:id" element={<Details/>} />
         </Routes>
 
         

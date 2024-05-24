@@ -29,7 +29,7 @@ func main() {
 	r.HandleFunc("/", routes.HandlerHome)
 
 	r.HandleFunc("/rocas", routes.GetRocasHandler).Methods("GET")
-	r.HandleFunc("/rocas/{nombre}", routes.GetRocaHandler).Methods("GET")
+	r.HandleFunc("/rocas/{id}", routes.GetRocaHandler).Methods("GET")
 	r.HandleFunc("/rocas", routes.PostRocasHandler).Methods("POST")
 	r.HandleFunc("/rocas/{id}", routes.DeleteRocasHandler).Methods("DELETE")
 	r.HandleFunc("/rocas/{id}", routes.PutRocasHandler).Methods("PUT")

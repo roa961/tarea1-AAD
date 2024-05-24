@@ -11,3 +11,17 @@
     overflow: 'auto';
     
 }
+.Detalles{
+    width: 50%;
+    right: 100px;
+    text-align: center;
+}
+.Detalle{
+    position: fixed;
+    top: 100px;
+    width: 100%;
+    text-align: center;
+    overflow: auto;
+    height:100%;
+    
+}

@@ -28,16 +28,11 @@ func GetRocaHandler(writer http.ResponseWriter, reader *http.Request) {
 
 	var roca models.Rocas
 	params := mux.Vars(reader)
-	rocas := db.DB.Where("nombre = ?", params["nombre"]).Find(&roca)
-	if params["nombre"] == "" {
-		http.Error(writer, "Nombre vacío", http.StatusNotFound)
-		return
-	}
-	if rocas.RowsAffected == 0 {
-		writer.WriteHeader(http.StatusNotFound)
-		writer.Write([]byte("Roca no encontrada"))
-		return
-	}
+	db.DB.Where("ID = ?", params["id"]).Find(&roca)
+	fmt.Println(params["id"])
+	// if params["id"] == "" {
+	// 	http.Error(writer, "Nombre vacío", http.StatusNotFound)
+	// 	return
 	json.NewEncoder(writer).Encode(&roca)
 
 }
